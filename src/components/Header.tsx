@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Scale, Menu, X, MessageCircle, FileCheck, Home, Info, Mail, LogIn, FolderOpen } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 import { useAuth } from '../hooks/useAuth';
 import { UserMenu } from './UserMenu';
 import { AuthModal } from './AuthModal';
@@ -9,15 +11,16 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const location = useLocation();
+  const { t, language, setLanguage } = useLanguage();
   const { user } = useAuth();
   
   const navigation = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'Legal Literacy Chatbot', href: '/chatbot', icon: MessageCircle },
-    { name: 'Contract Validator', href: '/validator', icon: FileCheck },
-    { name: 'My Documents', href: '/my-documents', icon: FolderOpen },
-    { name: 'About', href: '/about', icon: Info },
-    { name: 'Contact', href: '/contact', icon: Mail },
+    { name: t('nav.home'), href: '/', icon: Home },
+    { name: t('nav.chatbot'), href: '/chatbot', icon: MessageCircle },
+    { name: t('nav.validator'), href: '/validator', icon: FileCheck },
+    { name: t('nav.documents'), href: '/my-documents', icon: FolderOpen },
+    { name: t('nav.about'), href: '/about', icon: Info },
+    { name: t('nav.contact'), href: '/contact', icon: Mail },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -34,7 +37,7 @@ const Header: React.FC = () => {
               </div>
               <div className="hidden sm:block">
                 <span className="text-xl font-bold gradient-text">
-                  LawSpark AI
+                  {t('app.name')}
                 </span>
               </div>
             </Link>
@@ -67,6 +70,11 @@ const Header: React.FC = () => {
 
             {/* User Menu / Auth Button */}
             <div className="hidden lg:flex items-center space-x-4 z-10">
+              <LanguageSelector 
+                currentLanguage={language} 
+                onChange={(code) => setLanguage(code as any)} 
+              />
+              
               {user ? (
                 <UserMenu />
               ) : (
@@ -75,7 +83,7 @@ const Header: React.FC = () => {
                   className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-accent-blue to-accent-cyan text-white rounded-lg hover:from-accent-cyan hover:to-accent-teal transition-colors"
                 >
                   <LogIn className="h-4 w-4" />
-                  <span>Sign In</span>
+                  <span>{t('auth.signin')}</span>
                 </button>
               )}
             </div>
@@ -131,7 +139,7 @@ const Header: React.FC = () => {
                     className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-accent-blue to-accent-cyan text-white rounded-xl hover:from-accent-cyan hover:to-accent-teal transition-colors"
                   >
                     <LogIn className="h-4 w-4" />
-                    <span>Sign In</span>
+                    <span>{t('auth.signin')}</span>
                   </button>
                 )}
               </div>

@@ -1,21 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, FileCheck, Shield, Zap, Users, Award, ArrowRight, CheckCircle, Star, Quote } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home: React.FC = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: MessageCircle,
-      title: 'AI Legal Assistant',
-      description: 'Get instant answers to legal questions with our advanced AI chatbot trained on comprehensive legal databases and case studies.',
+      title: t('features.chatbot.title'),
+      description: t('features.chatbot.description'),
       href: '/chatbot',
       color: 'from-accent-blue to-accent-cyan',
       benefits: ['24/7 availability', 'Instant responses', 'Legal terminology explained', 'Case law references']
     },
     {
       icon: FileCheck,
-      title: 'Check My Contract',
-      description: 'Upload and analyze contracts for potential issues, missing clauses, legal compliance, and improvement recommendations.',
+      title: t('features.contract.title'),
+      description: t('features.contract.description'),
       href: '/validator',
       color: 'from-accent-cyan to-accent-teal',
       benefits: ['Risk assessment', 'Clause analysis', 'Compliance checking', 'Improvement suggestions']
@@ -70,17 +73,16 @@ const Home: React.FC = () => {
               <div className="space-y-6">
                 <div className="inline-flex items-center px-4 py-2 bg-primary-light rounded-full text-accent-cyan font-medium text-sm">
                   <Shield className="h-4 w-4 mr-2" />
-                  Trusted by 50,000+ Users Worldwide
+                  {t('home.trusted')}
                 </div>
                 
                 <h1 className="text-4xl md:text-6xl font-bold text-text-primary leading-tight">
-                  Legal Technology
-                  <span className="block gradient-text">Made Simple</span>
+                  {t('home.hero.title')}
+                  <span className="block gradient-text">{t('home.hero.subtitle')}</span>
                 </h1>
                 
                 <p className="text-xl text-text-secondary leading-relaxed max-w-2xl">
-                  Democratize legal knowledge with AI-powered assistance and intelligent contract validation. 
-                  Get professional legal insights instantly, without the complexity or cost.
+                  {t('home.hero.description')}
                 </p>
               </div>
               
@@ -91,7 +93,7 @@ const Home: React.FC = () => {
                   className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-white font-semibold rounded-xl hover:from-accent-cyan hover:to-accent-teal transition-all transform hover:scale-105 shadow-glow"
                 >
                   <MessageCircle className="h-5 w-5 mr-3" />
-                  Use Legal Chatbot
+                  {t('home.hero.cta.chatbot')}
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 
@@ -100,7 +102,7 @@ const Home: React.FC = () => {
                   className="group inline-flex items-center justify-center px-8 py-4 bg-transparent text-accent-cyan border-2 border-accent-cyan/30 font-semibold rounded-xl hover:bg-primary-light transition-all transform hover:scale-105 gradient-border"
                 >
                   <FileCheck className="h-5 w-5 mr-3" />
-                  Check My Contract
+                  <span>{t('home.hero.cta.chatbot')}</span>
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -187,11 +189,9 @@ const Home: React.FC = () => {
       <section className="py-20 bg-primary-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
-              Powerful Legal Tools at Your Fingertips
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t('features.title')}</h2>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              Choose from our comprehensive suite of AI-powered legal technology solutions designed for everyone
+              {t('features.description')}
             </p>
           </div>
 
@@ -371,14 +371,14 @@ const Home: React.FC = () => {
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-cyan text-white font-semibold rounded-xl hover:from-accent-cyan hover:to-accent-teal transition-all transform hover:scale-105 shadow-glow"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
-                Start with Chatbot
+                {t('home.hero.cta.chatbot')}
               </Link>
               <Link
                 to="/validator"
                 className="inline-flex items-center px-8 py-4 bg-primary-light text-text-primary font-semibold rounded-xl hover:bg-primary transition-all transform hover:scale-105 border border-accent-blue/30"
               >
                 <FileCheck className="h-5 w-5 mr-2" />
-                Check My Contract
+                {t('home.hero.cta.contract')}
               </Link>
             </div>
           </div>
