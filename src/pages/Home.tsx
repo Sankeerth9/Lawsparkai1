@@ -102,7 +102,7 @@ const Home: React.FC = () => {
                   className="group inline-flex items-center justify-center px-8 py-4 bg-transparent text-accent-cyan border-2 border-accent-cyan/30 font-semibold rounded-xl hover:bg-primary-light transition-all transform hover:scale-105 gradient-border"
                 >
                   <FileCheck className="h-5 w-5 mr-3" />
-                  <span>{t('home.hero.cta.chatbot')}</span>
+                  <span>{t('home.hero.cta.contract')}</span>
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
